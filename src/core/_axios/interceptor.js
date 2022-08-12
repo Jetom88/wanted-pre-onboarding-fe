@@ -28,7 +28,9 @@ instance.interceptors.response.use(
       const token = localStorage.getItem("token");
       if (token) {
         localStorage.removeItem("token");
+        return;
       }
+      return;
     }
     return Promise.reject(err);
   }

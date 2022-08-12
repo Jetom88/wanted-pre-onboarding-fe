@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./basicBtn.module.scss";
 
-const BasicBtn = ({ text, active = false }) => {
+const BasicBtn = ({ type, text, active = false }) => {
   return (
     <button
-      type="button"
+      type={type}
       className={`${styles.basicBtn} ${
         active ? styles.enabled : styles.disabled
       }`}
