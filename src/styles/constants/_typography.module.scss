@@ -1,0 +1,29 @@
+$family: (
+  PExtraLight: "Pretendard-ExtraLight",
+  PLight: "Pretendard-Light",
+  PRegular: "Pretendard-Regular",
+  PMedium: "Pretendard-Medium",
+  PSemiBold: "Pretendard-SemiBold",
+  PBold: "Pretendard-Bold",
+);
+
+@mixin family($family) {
+  @if ($family == PExtraLight) {
+    font-family: "Pretendard-ExtraLight";
+  }
+  @if ($family == PLight) {
+    font-family: "Pretendard-Light";
+  }
+  @if ($family == PRegular) {
+    font-family: "Pretendard-Regular";
+  }
+  @if ($family == PMedium) {
+    font-family: "Pretendard-Medium";
+  }
+  @if ($family == PSemiBold) {
+    font-family: "Pretendard-SemiBold";
+  }
+  @if ($family == PBold) {
+    font-family: "Pretendard-SemiBold";
+  }
+}
