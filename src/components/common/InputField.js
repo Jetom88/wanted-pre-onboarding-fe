@@ -1,10 +1,15 @@
 import styles from "./inputField.module.scss";
 
-const InputField = ({ text, placeholder, onChage, value }) => {
+const InputField = ({ type, text, placeholder, onChange, value }) => {
   return (
     <div className={styles.field}>
       <p>{text}</p>
-      <input placeholder={placeholder} onChage={onChage} value={value} />
+      <input
+        type={type}
+        placeholder={placeholder}
+        onChange={onChange}
+        value={value}
+      />
     </div>
   );
 };
