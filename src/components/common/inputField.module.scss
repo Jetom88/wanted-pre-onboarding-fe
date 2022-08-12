@@ -1,0 +1,24 @@
+@import "../../styles/main.module.scss";
+
+.field {
+  p {
+    font-size: 14px;
+    color: #767676;
+    padding-top: 20px;
+
+    padding-bottom: 12px;
+  }
+
+  input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid $border;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  input::placeholder {
+    color: $gray400;
+    @include family(PLight);
+  }
+}

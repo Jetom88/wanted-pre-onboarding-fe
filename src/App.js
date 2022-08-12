@@ -1,7 +1,15 @@
 import "./styles/main.module.scss";
+import { Route, Routes } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
-  return <div className="App">초기 세팅</div>;
+  return (
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+    </Routes>
+  );
 }
 
 export default App;
