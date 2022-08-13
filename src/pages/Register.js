@@ -4,13 +4,13 @@ import InputLayout from "../components/common/InputLayout";
 import BasicBtn from "../components/common/BasicBtn";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { POST_REGISTER } from "../core/_axios/user";
+import { POST_SIGNUP } from "../core/_axios/user";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigator = useNavigate();
+  const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -21,11 +21,12 @@ const Register = () => {
     };
 
     try {
-      const res = await POST_REGISTER(form);
+      const res = await POST_SIGNUP(form);
       if (res.status === 200 || res.status === 201) {
-        navigator("/");
+        navigate("/");
       }
     } catch (e) {
+      console.log(e);
       const res = e.response;
       if (res.status === 400) {
         alert(res.data.message);
@@ -40,6 +41,8 @@ const Register = () => {
   const onPasswordHandler = (e) => {
     setPassword(e.target.value);
   };
+
+  const isValue = email.includes("@") && password.length >= 8 ? true : false;
 
   return (
     <InputLayout>
@@ -63,7 +66,8 @@ const Register = () => {
         <BasicBtn
           type={"submit"}
           text="가입하기"
-          active={email.includes("@") && password.length >= 8 ? true : false}
+          active={isValue}
+          disabled={!isValue}
         />
       </form>
     </InputLayout>
