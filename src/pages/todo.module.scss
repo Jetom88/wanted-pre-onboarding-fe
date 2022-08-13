@@ -1,0 +1,18 @@
+@import "../styles/main.module.scss";
+
+.todoSection {
+  @include flexBox(center, center);
+  flex-direction: column;
+  position: relative;
+  padding: 20px;
+  background: $white;
+
+  .userList {
+    display: flex;
+  }
+
+  .user {
+    font-size: 14px;
+    color: $sub;
+  }
+}
