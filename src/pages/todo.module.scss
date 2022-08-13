@@ -12,6 +12,14 @@
     .list {
       padding: 5px;
       @include flexBox(between, center);
+
+      .todoInfo {
+        @include flexBox(center, center);
+        cursor: pointer;
+        .checked {
+          margin-right: 10px;
+        }
+      }
     }
   }
 }
