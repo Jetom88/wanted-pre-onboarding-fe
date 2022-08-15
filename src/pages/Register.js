@@ -42,7 +42,8 @@ const Register = () => {
     setPassword(e.target.value);
   };
 
-  const isValue = email.includes("@") && password.length >= 8 ? true : false;
+  const regExp = /^[0-9a-z-A-z]*@[0-9a-z-A-z]*\.[a-zA-Z]{2,3}$/i;
+  const isValue = email.match(regExp) && password.length >= 8 ? true : false;
 
   return (
     <InputLayout>
@@ -54,6 +55,11 @@ const Register = () => {
           onChange={(e) => onEmailHandler(e)}
           value={email}
         />
+        {email.length !== 0 && !email.match(regExp) ? (
+          <p className={styles.falseText}>이메일 주소가 올바르지 않습니다.</p>
+        ) : (
+          <p className={styles.trueText}>사용 가능한 이메일입니다.</p>
+        )}
 
         <InputField
           type="password"
@@ -62,6 +68,11 @@ const Register = () => {
           onChange={(e) => onPasswordHandler(e)}
           value={password}
         />
+        {password.length !== 0 && password.length < 8 ? (
+          <p className={styles.falseText}>
+            비밀번호는 8자 이상으로 입력해 주십시오.
+          </p>
+        ) : null}
 
         <BasicBtn
           type={"submit"}

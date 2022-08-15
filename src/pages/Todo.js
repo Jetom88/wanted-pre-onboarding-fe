@@ -5,7 +5,6 @@ import Layout from "../components/common/Layout";
 import Nav from "../components/common/Nav";
 import TodoList from "../components/common/TodoList";
 import { GET_TODOS, POST_TODOS } from "../core/_axios/todos";
-import useDebounce from "../hook/useDebounce";
 import styles from "./todo.module.scss";
 
 const Todo = () => {
@@ -24,8 +23,6 @@ const Todo = () => {
       console.log(e);
     }
   };
-
-  const debounced = useDebounce(getTodos, 5000);
 
   const onTodoHandler = (e) => {
     setTodo(e.target.value);
@@ -57,9 +54,8 @@ const Todo = () => {
     if (!token) {
       navigate("/");
     }
-
-    if (debounced) getTodos();
-  }, [debounced]);
+    getTodos();
+  }, [todos]);
 
   return (
     <Layout>
