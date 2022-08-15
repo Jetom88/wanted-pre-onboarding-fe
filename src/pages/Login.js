@@ -46,7 +46,14 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const isValue = email.includes("@") && password.length >= 8 ? true : false;
+  useEffect(() => {
+    if (token) {
+      navigate("/todo");
+    }
+  }, []);
+
+  const regExp = /^[0-9a-z-A-z]*@[0-9a-z-A-z]*\.[a-zA-Z]{2,3}$/i;
+  const isValue = email.match(regExp) && password.length >= 8 ? true : false;
 
   return (
     <InputLayout>
@@ -57,12 +64,21 @@ const Login = () => {
           placeholder="이메일을 입력해 주세요."
           onChange={(e) => onEmailHandler(e)}
         />
+        {email.length !== 0 && !email.match(regExp) ? (
+          <p className={styles.falseText}>이메일 주소가 올바르지 않습니다.</p>
+        ) : null}
+
         <InputField
           type="password"
           text={"비밀번호"}
           placeholder="비밀번호를 입력해 주세요."
           onChange={(e) => onPasswordHandler(e)}
         />
+        {password.length !== 0 && password.length < 8 ? (
+          <p className={styles.falseText}>
+            비밀번호는 8자 이상으로 입력해 주십시오.
+          </p>
+        ) : null}
 
         <BasicBtn
           type={"submit"}
@@ -72,7 +88,7 @@ const Login = () => {
         />
       </form>
 
-      <div className={styles.register}>
+      <div className={styles.goRegister}>
         <button
           onClick={() => {
             navigate("/register");
