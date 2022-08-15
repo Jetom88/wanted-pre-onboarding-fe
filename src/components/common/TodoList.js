@@ -89,7 +89,7 @@ const TodoList = ({
                     className={styles.confirm}
                     onClick={onEidtHandler}
                   >
-                    확인
+                    제출
                   </button>
                 </div>
               </div>
