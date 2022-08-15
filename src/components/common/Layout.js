@@ -3,7 +3,7 @@ import styles from "./layout.module.scss";
 const Layout = ({ children }) => {
   return (
     <section className={styles.container}>
-      <article>{children}</article>
+      <article className={styles.article}>{children}</article>
     </section>
   );
 };

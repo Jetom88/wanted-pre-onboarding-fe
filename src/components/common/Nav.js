@@ -1,17 +1,27 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./nav.module.scss";
 
 const Nav = () => {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    if (!window.confirm("로그아웃 하시겠습니까?")) {
+      return null;
+    } else {
+      localStorage.removeItem("token");
+      navigate("/");
+    }
+  };
+
   return (
-    <nav>
-      <div className={styles.logo}>
-        <img
-          src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Ficon-menu.png&w=undefined&q=75"
-          alt="hamberger menu"
-          className={styles.hamberger}
-        />
+    <nav className={styles.nav}>
+      <a
+        href="https://github.com/Jetom88/wanted-pre-onboarding-fe"
+        target="_blank"
+      >
         <img src="../wanted_logo.png" alt="logo" className={styles.logoImg} />
-      </div>
+      </a>
+      <p onClick={logout}>로그아웃</p>
     </nav>
   );
 };

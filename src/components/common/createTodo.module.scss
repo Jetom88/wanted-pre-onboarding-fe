@@ -1,0 +1,38 @@
+@import "../../styles/main.module.scss";
+
+.editMode {
+  width: 100%;
+  padding: 25px 0;
+  text-align: center;
+  color: $point;
+}
+
+.create {
+  width: 100%;
+  padding: 20px 0;
+  @include flexBox(center, center);
+
+  input {
+    width: 50%;
+    padding-bottom: 8px;
+    border: none;
+    border-bottom: 1px solid $gray400;
+  }
+
+  input::placeholder {
+    color: $gray400;
+    padding-left: 5px;
+  }
+
+  .btn {
+    padding: 7px 15px;
+    margin-left: 3px;
+    @include family(PMedium);
+    font-size: 18;
+    border: none;
+    border-radius: 3px;
+    color: $white;
+    background: $point;
+    cursor: pointer;
+  }
+}

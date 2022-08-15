@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BasicBtn from "../components/common/BasicBtn";
 import InputField from "../components/common/InputField";
@@ -11,6 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  const token = localStorage.getItem("access_token");
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -23,14 +24,13 @@ const Login = () => {
     try {
       const res = await POST_SIGNIN(form);
 
-      const token = res.data.access_token;
+      const getToken = res.data.access_token;
 
       if (res.status === 200 || res.status === 201) {
-        localStorage.setItem("token", token);
+        localStorage.setItem("access_token", getToken);
         navigate("/todo");
       }
     } catch (e) {
-      console.log(e);
       const res = e.response;
       if (res.status === 400) {
         alert(res.data.message);
@@ -45,6 +45,12 @@ const Login = () => {
   const onPasswordHandler = (e) => {
     setPassword(e.target.value);
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/todo");
+    }
+  }, []);
 
   const isValue = email.includes("@") && password.length >= 8 ? true : false;
 

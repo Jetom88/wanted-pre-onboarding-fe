@@ -7,7 +7,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("access_token");
     if (token) {
       config.headers = {
         Authorization: `Bearer ${token}`,
@@ -16,23 +16,23 @@ instance.interceptors.request.use(
 
     return config;
   },
-  (err) => Promise.reject(err)
+  (e) => Promise.reject(e)
 );
 
 instance.interceptors.response.use(
   (response) => {
     return response;
   },
-  (err) => {
-    if (err.response.status === 401) {
-      const token = localStorage.getItem("token");
+  (e) => {
+    if (e.response.status === 401) {
+      const token = localStorage.getItem("access_token");
       if (token) {
-        localStorage.removeItem("token");
+        localStorage.removeItem("access_token");
         return;
       }
       return;
     }
-    return Promise.reject(err);
+    return Promise.reject(e);
   }
 );
 
