@@ -15,6 +15,16 @@ $ npm start
 
 ## 🎬 데모 영상 및 프로젝트 링크
 
+1. 로그인 및 회원가입<br/><br/>
+![login](https://user-images.githubusercontent.com/64053930/184637479-57fb7ed1-df4d-44dc-a1e3-0ee8334ae98e.gif)
+
+
+2. 투두리스트(수정/삭제/완료)<br/><br/>
+![todo](https://user-images.githubusercontent.com/64053930/184637729-e28970da-2b10-406e-9863-23f46c1780b6.gif)
+
+3. 토큰 여부에 따른 리다이렉트<br/><br/>
+![localStorage](https://user-images.githubusercontent.com/64053930/184640216-c6872ca6-f451-4c59-9b74-04ab2c0fbdc5.gif)
+
 <br/>
 
 ## 💻 적용 기술
