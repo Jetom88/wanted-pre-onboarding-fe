@@ -23,6 +23,11 @@ $ npm start
 
 <br/>
 
+## 📚 적용 라이브러리
+React Router / Axios / Scss / React Icon
+
+<br/>
+
 ## 📝 구현 기능
   - 로그인 / 회원가입
     - 이메일과 비밀번호의 유효성 검사기능을 구현
