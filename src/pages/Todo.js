@@ -66,28 +66,32 @@ const Todo = () => {
       <Nav />
 
       <div className={styles.todoSection}>
-        <h2>투두리스트</h2>
+        <h2>Todo List 📝</h2>
 
         <CreateTodo
           onSubmitHandler={onSubmitHandler}
           onTodoHandler={onTodoHandler}
           todo={todo}
+          edit={edit}
         />
-
-        {todos.map((todo) => (
-          <TodoList
-            key={todo.id}
-            getTodos={getTodos}
-            todos={todos}
-            setTodos={setTodos}
-            todo={todo}
-            setTodo={setTodo}
-            edit={edit}
-            setEdit={setEdit}
-            completed={completed}
-            setCompleted={setCompleted}
-          />
-        ))}
+        {todos.length === 0 ? (
+          <p className={styles.noTodos}>🤩 처음 할 일을 입력해주세요 🤩</p>
+        ) : (
+          todos.map((todo) => (
+            <TodoList
+              key={todo.id}
+              getTodos={getTodos}
+              todos={todos}
+              setTodos={setTodos}
+              todo={todo}
+              setTodo={setTodo}
+              edit={edit}
+              setEdit={setEdit}
+              completed={completed}
+              setCompleted={setCompleted}
+            />
+          ))
+        )}
       </div>
     </Layout>
   );

@@ -15,7 +15,12 @@ const Nav = () => {
 
   return (
     <nav className={styles.nav}>
-      <img src="../wanted_logo.png" alt="logo" className={styles.logoImg} />
+      <a
+        href="https://github.com/Jetom88/wanted-pre-onboarding-fe"
+        target="_blank"
+      >
+        <img src="../wanted_logo.png" alt="logo" className={styles.logoImg} />
+      </a>
       <p onClick={logout}>로그아웃</p>
     </nav>
   );
