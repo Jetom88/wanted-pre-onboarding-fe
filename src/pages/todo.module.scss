@@ -1,0 +1,18 @@
+@import "../styles/main.module.scss";
+
+.todoSection {
+  @include flexBox(center, center);
+  flex-direction: column;
+  padding: 20px;
+
+  h2 {
+    padding: 30px 0;
+    font-size: 30px;
+    @include family(PMedium);
+  }
+
+  .noTodos {
+    padding: 30px 0;
+    font-size: 20px;
+  }
+}

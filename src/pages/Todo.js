@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import CreateTodo from "../components/common/CreateTodo";
 import Layout from "../components/common/Layout";
 import Nav from "../components/common/Nav";
 import TodoList from "../components/common/TodoList";
@@ -57,7 +60,35 @@ const Todo = () => {
   return (
     <Layout>
       <Nav />
-      <div>테스트</div>
+
+      <div className={styles.todoSection}>
+        <h2>Todo List 📝</h2>
+
+        <CreateTodo
+          onSubmitHandler={onSubmitHandler}
+          onTodoHandler={onTodoHandler}
+          todo={todo}
+          edit={edit}
+        />
+        {todos.length === 0 ? (
+          <p className={styles.noTodos}>🤩 처음 할 일을 입력해주세요 🤩</p>
+        ) : (
+          todos.map((todo) => (
+            <TodoList
+              key={todo.id}
+              getTodos={getTodos}
+              todos={todos}
+              setTodos={setTodos}
+              todo={todo}
+              setTodo={setTodo}
+              edit={edit}
+              setEdit={setEdit}
+              completed={completed}
+              setCompleted={setCompleted}
+            />
+          ))
+        )}
+      </div>
     </Layout>
   );
 };

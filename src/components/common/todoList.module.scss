@@ -1,0 +1,85 @@
+@import "../../styles/main.module.scss";
+
+.todoList {
+  width: 80%;
+
+  .list {
+    padding: 6px;
+    @include flexBox(between, center);
+
+    .form {
+      width: 75%;
+      text-overflow: ellipsis;
+      .editText {
+        width: 100%;
+        margin: 2px 0;
+        font-size: 16px;
+        @include family(PLight);
+        border: none;
+        border-bottom: 1px solid $gray400;
+      }
+
+      .editText::placeholder {
+        color: $gray400;
+        padding: 2px;
+      }
+    }
+
+    .todoInfo {
+      width: 100%;
+      @include flexBox(between, center);
+      p {
+        width: 80%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .finish {
+        text-decoration: line-through;
+        color: $gray300;
+      }
+
+      .button {
+        @include flexBox(center, center);
+        cursor: pointer;
+        p {
+          margin: 0 5px;
+        }
+      }
+
+      .confirmText {
+        @include flexBox(between, end);
+        color: $sub;
+
+        @include family(PRegular);
+        width: 100%;
+
+        .button {
+          @include flexBox(center, center);
+          cursor: pointer;
+          p {
+            margin: 0 5px;
+          }
+
+          .cancle,
+          .confirm {
+            padding: 0;
+            margin: 0 4px;
+            color: $sub;
+            font-size: 15px;
+            background-color: transparent;
+            border: none;
+          }
+
+          .cancle:hover {
+            color: red;
+          }
+
+          .confirm:hover {
+            color: $point;
+          }
+        }
+      }
+    }
+  }
+}

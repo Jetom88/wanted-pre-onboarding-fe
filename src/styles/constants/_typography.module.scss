@@ -3,8 +3,6 @@ $family: (
   PLight: "Pretendard-Light",
   PRegular: "Pretendard-Regular",
   PMedium: "Pretendard-Medium",
-  PSemiBold: "Pretendard-SemiBold",
-  PBold: "Pretendard-Bold",
 );
 
 @mixin family($family) {
@@ -19,11 +17,5 @@ $family: (
   }
   @if ($family == PMedium) {
     font-family: "Pretendard-Medium";
-  }
-  @if ($family == PSemiBold) {
-    font-family: "Pretendard-SemiBold";
-  }
-  @if ($family == PBold) {
-    font-family: "Pretendard-SemiBold";
   }
 }
