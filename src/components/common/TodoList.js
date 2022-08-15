@@ -23,12 +23,11 @@ const TodoList = ({
     setTodos([...todos.filter((item) => item.id !== todo.id)]);
   };
 
-  const form = {
-    todo: todoText,
-    isCompleted: completed,
-  };
-
   const onEidtHandler = async (e) => {
+    const form = {
+      todo: todoText,
+      isCompleted: completed,
+    };
     e.preventDefault();
 
     try {
@@ -43,11 +42,13 @@ const TodoList = ({
     }
   };
 
-  const onCompletedHanlder = async (id) => {
+  const onCompletedHanlder = async () => {
+    const form = {
+      todo: todoText,
+      isCompleted: !todo.isCompleted,
+    };
+
     try {
-      todos.map((item) =>
-        item.id === id ? { ...item, isCompleted: completed } : item
-      );
       await PUT_TODOS(form, todo.id);
       getTodos();
     } catch (e) {
@@ -111,9 +112,9 @@ const TodoList = ({
                 ✏️
               </p>
               <p
-                onClick={(id) => {
+                onClick={() => {
                   setCompleted(!completed);
-                  onCompletedHanlder(id);
+                  onCompletedHanlder();
                 }}
               >
                 {todo.isCompleted ? <FcCheckmark /> : <FiCheck />}
