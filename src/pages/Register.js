@@ -55,9 +55,10 @@ const Register = () => {
           onChange={(e) => onEmailHandler(e)}
           value={email}
         />
+
         {email.length !== 0 && !email.match(regExp) ? (
           <p className={styles.falseText}>이메일 주소가 올바르지 않습니다.</p>
-        ) : (
+        ) : email.length === 0 ? null : (
           <p className={styles.trueText}>사용 가능한 이메일입니다.</p>
         )}
 
