@@ -1,26 +1,25 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CreateTodo from "../components/common/CreateTodo";
 import Layout from "../components/common/Layout";
 import Nav from "../components/common/Nav";
-import { DELETE_TODOS, GET_TODOS, POST_TODOS } from "../core/_axios/todos";
+import TodoList from "../components/common/TodoList";
+import { GET_TODOS, POST_TODOS } from "../core/_axios/todos";
 import useDebounce from "../hook/useDebounce";
 import styles from "./todo.module.scss";
-import { FcCheckmark } from "react-icons/fc";
-import { FiCheck } from "react-icons/fi";
 
 const Todo = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
   const [todos, setTodos] = useState([]);
   const [todo, setTodo] = useState("");
-  const [id, setId] = useState();
+  const [edit, setEdit] = useState(false);
+  const [completed, setCompleted] = useState(false);
 
   const getTodos = async () => {
     try {
       const res = await GET_TODOS();
       setTodos(res.data);
-      console.log(res);
     } catch (e) {
       console.log(e);
     }
@@ -40,11 +39,15 @@ const Todo = () => {
         todo,
       };
 
-      await POST_TODOS(form);
+      if (todo === "") {
+        alert("내용을 입력해주세요");
+      } else {
+        await POST_TODOS(form);
 
-      setTodo("");
+        setTodo("");
 
-      getTodos();
+        getTodos();
+      }
     } catch (e) {
       console.log(e);
     }
@@ -71,27 +74,20 @@ const Todo = () => {
           todo={todo}
         />
 
-        <div className={styles.todoList}>
-          {todos.map((list) => {
-            const onDeleteBtn = async () => {
-              await DELETE_TODOS(list.id);
-              getTodos();
-            };
-            return (
-              <div key={list.id} className={styles.todo}>
-                <div className={styles.list}>
-                  <p>{list.todo}</p>
-                  <div className={styles.todoInfo}>
-                    <p className={styles.checked}>
-                      {list.isCompleted ? <FcCheckmark /> : <FiCheck />}
-                    </p>
-                    <p onClick={onDeleteBtn}>🗑</p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        {todos.map((todo) => (
+          <TodoList
+            key={todo.id}
+            getTodos={getTodos}
+            todos={todos}
+            setTodos={setTodos}
+            todo={todo}
+            setTodo={setTodo}
+            edit={edit}
+            setEdit={setEdit}
+            completed={completed}
+            setCompleted={setCompleted}
+          />
+        ))}
       </div>
     </Layout>
   );

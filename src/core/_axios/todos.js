@@ -17,7 +17,7 @@ export const POST_TODOS = (form) => {
 
 export const PUT_TODOS = (form, id) => {
   return Api({
-    method: METHOD.POST,
+    method: METHOD.PUT,
     url: `todos/${id}`,
     data: form,
   });
