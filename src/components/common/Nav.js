@@ -8,7 +8,7 @@ const Nav = () => {
     if (!window.confirm("로그아웃 하시겠습니까?")) {
       return null;
     } else {
-      localStorage.removeItem("token");
+      localStorage.removeItem("access_token");
       navigate("/");
     }
   };
